@@ -2,6 +2,7 @@
 
 source ./ENVSETTINGS
 APTINSTALL=""
+cd ~
 
 echo "Docker ..."
 if [ ! -x /usr/bin/docker ]; then
@@ -12,7 +13,17 @@ else
 	echo -e "  ${GREEN}OK${NC} - already installed."
 fi
 
-cd /root
+echo "Docker Compose..."
+if [ ! -x /usr/local/bin/docker-compose ]; then
+	echo -e "   ${RED}not found${NC} - starting installation!"
+	sudo curl -L "https://github.com/docker/compose/releases/download/1.27.4/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+	sudo chmod +x /usr/local/bin/docker-compose
+else
+	echo -e "  ${GREEN}OK${NC} - already installed."
+fi
+
+
+cd ~
 git clone https://github.com/jitsi/docker-jitsi-meet && cd docker-jitsi-meet
 cp env.example .en
 ./gen-passwords.sh
