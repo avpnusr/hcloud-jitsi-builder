@@ -57,7 +57,7 @@ ssh -l root "$IPv4" "apt --yes update && \
 	cd /root && \
 	git clone $GITREPO && \
 	cd /root/hcloud-jitsi-builder/ && \
-	/root/hcloud-jitsi-builder/run.sh $1 $2"
+	/root/hcloud-jitsi-builder/run.sh"
 
 
 
