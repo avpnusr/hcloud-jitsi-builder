@@ -1,8 +1,6 @@
 #!/bin/bash
 
 source ./ENVSETTINGS
-JITSIHOSTNAME=$1
-JITSIEMAIL=$2
 APTINSTALL=""
 cd ~
 
