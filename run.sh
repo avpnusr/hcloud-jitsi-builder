@@ -26,7 +26,8 @@ fi
 
 
 cd ~
-git clone https://github.com/jitsi/docker-jitsi-meet/releases/latest && cd docker-jitsi-meet
+# git clone https://github.com/jitsi/docker-jitsi-meet/releases/latest && cd docker-jitsi-meet
+wget https://github.com/jitsi/docker-jitsi-meet/archive/stable-5142.tar.gz && tar -zxf stable-5142.tar.gz && cd docker-jitsi-meet-stable-5142
 cp env.example .env
 ./gen-passwords.sh
 sed -i 's/#PUBLIC_URL.*$/PUBLIC_URL=$JITSIHOSTNAME/' .env
@@ -38,7 +39,7 @@ sed -i 's/HTTPS_PORT=8443/HTTPS_PORT=443/' .env
 sed -i 's/TZ=UTC/TZ=Europe\/Berlin/' .env
 
 mkdir -p ~/.jitsi-meet-cfg/{web/letsencrypt,transcripts,prosody/config,prosody/prosody-plugins-custom,jicofo,jvb,jigasi,jibri}
-# docker-compose up -d
+docker-compose up -d
 
 
 	
