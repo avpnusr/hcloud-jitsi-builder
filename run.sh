@@ -1,6 +1,8 @@
 #!/bin/bash
 
 source ./ENVSETTINGS
+JITSIHOSTNAME=$1
+JITSIEMAIL=$2
 APTINSTALL=""
 cd ~
 
@@ -24,9 +26,17 @@ fi
 
 
 cd ~
-git clone https://github.com/jitsi/docker-jitsi-meet && cd docker-jitsi-meet
+git clone https://github.com/jitsi/docker-jitsi-meet/releases/latest && cd docker-jitsi-meet
 cp env.example .env
 ./gen-passwords.sh
+sed -i 's/#PUBLIC_URL.*$/PUBLIC_URL=$JITSIHOSTNAME/' .env
+sed -i 's/#ENABLE_LETSENCRYPT=1/ENABLE_LETSENCRYPT=1/' .env
+sed -i 's/#LETSENCRYPT_DOMAIN=meet.example.com/LETSENCRYPT_DOMAIN=$JITSIHOSTNAME/' .env
+sed -i 's/#LETSENCRYPT_EMAIL=alice@atlanta.net/LETSENCRYPT_EMAIL=$JITSIEMAIL/' .env
+sed -i 's/HTTP_PORT=8000/HTTP_PORT=80/' .env
+sed -i 's/HTTPS_PORT=8443/HTTPS_PORT=443/' .env
+sed -i 's/TZ=UTC/TZ=Europe\/Berlin/' .env
+
 mkdir -p ~/.jitsi-meet-cfg/{web/letsencrypt,transcripts,prosody/config,prosody/prosody-plugins-custom,jicofo,jvb,jigasi,jibri}
 # docker-compose up -d
 
