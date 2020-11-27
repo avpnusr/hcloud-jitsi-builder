@@ -1,6 +1,10 @@
 #!/bin/bash
 
-
+if [ "$1" == "" ] || [ "$2" == "" ]; then
+echo "Please add the two necessary Options to your command:"
+echo "./install.sh [JITSI HOSTNAME] [MAIL-ADDRESS]"
+exit 0
+fi
 
 SERVERNAME=jitspriv
 SERVERTYPE=ccx31
@@ -9,6 +13,8 @@ SSHPRIVKEY=~/.ssh/id_rsa
 GITREPO=https://github.com/avpnusr/hcloud-jitsi-builder.git
 SRVSTATUS=$(hcloud server list)
 HCCONTEXT=$(hcloud context active)
+JITSIHOSTNAME="$1"
+ENCMAIL="$2"
 
 if [ ! -r "$SSHPRIVKEY" ]; then
 	echo "SSH Key does not exist"
@@ -42,9 +48,4 @@ ssh -l root -i ~/.ssh/id_rsa "$IPv4" "apt -y update && \
 	cd /root && \
 	git clone $GITREPO && \
 	cd /root/hcloud-jitsi-builder/ && \
-	/root/hcloud-jitsi-builder/run.sh"
-
-
-
-
-
+	/root/hcloud-jitsi-builder/run.sh ${JITSIHOSTNAME} ${ENCMAIL}"
