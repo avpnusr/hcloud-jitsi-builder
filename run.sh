@@ -16,7 +16,7 @@ fi
 echo "Docker Compose..."
 if [ ! -x /usr/local/bin/docker-compose ]; then
 	echo -e "   ${RED}not found${NC} - starting installation!"
-	wget -O /usr/local/bin/docker-compose "https://github.com/$(curl -L "https://github.com/docker/compose/releases/latest" | grep -E -m1 "$(uname -s).*$(uname -m)" | awk -F 'href="' '{print $2}' | awk -F '" rel=' '{print $1}')"
+	wget -O /usr/local/bin/docker-compose "https://github.com/$(curl -sL "https://github.com/docker/compose/releases/latest" | grep -E -m1 "$(uname -s).*$(uname -m)" | awk -F 'href="' '{print $2}' | awk -F '" rel=' '{print $1}')"
 	chmod +x /usr/local/bin/docker-compose
 else
 	echo -e "  ${GREEN}OK${NC} - already installed."
