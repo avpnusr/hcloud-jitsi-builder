@@ -15,3 +15,6 @@ DATACONTAINERMNT=/root/mount/containerdata
 
 RCLONEINI=/root/mount/containerini/rclone/rclone.conf
 RCLONEMNT=/root/mount/gTeamdriveSecure
+
+JITSIHOSTNAME=vko.ddnss.de
+ENCMAIL=avpnuser@tuta.io
