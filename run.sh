@@ -5,8 +5,6 @@ APTINSTALL=""
 
 cd ~
 
-$JITSILINK="https://github.com/$(curl -sL "https://github.com/jitsi/docker-jitsi-meet/releases/latest" | grep .tar.gz | awk -F 'href="' '{print $2}' | awk -F '" rel=' '{print $1}')"
-
 echo "Docker ..."
 if [ ! -x /usr/bin/docker ]; then
 	echo -e "   ${RED}not found${NC} - starting installation!"
