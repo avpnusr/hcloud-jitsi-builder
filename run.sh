@@ -30,10 +30,10 @@ wget -O jitsi-docker.tar.gz "https://github.com/$(curl -sL "https://github.com/j
 mkdir jitsi-docker && tar -xf jitsi-docker.tar.gz --strip-components 1 -C ./jitsi-docker && cd jitsi-docker
 cp env.example .env
 ./gen-passwords.sh
-sed -i 's/#PUBLIC_URL.*$/PUBLIC_URL=$JITSIHOSTNAME/' .env
+sed -i 's/#PUBLIC_URL.*$/PUBLIC_URL=${JITSIHOSTNAME}/' .env
 sed -i 's/#ENABLE_LETSENCRYPT=1/ENABLE_LETSENCRYPT=1/' .env
-sed -i 's/#LETSENCRYPT_DOMAIN=meet.example.com/LETSENCRYPT_DOMAIN=$JITSIHOSTNAME/' .env
-sed -i 's/#LETSENCRYPT_EMAIL=alice@atlanta.net/LETSENCRYPT_EMAIL=$ENCMAIL/' .env
+sed -i 's/#LETSENCRYPT_DOMAIN=meet.example.com/LETSENCRYPT_DOMAIN=${JITSIHOSTNAME}/' .env
+sed -i 's/#LETSENCRYPT_EMAIL=alice@atlanta.net/LETSENCRYPT_EMAIL=${ENCMAIL}/' .env
 sed -i 's/HTTP_PORT=8000/HTTP_PORT=80/' .env
 sed -i 's/HTTPS_PORT=8443/HTTPS_PORT=443/' .env
 sed -i 's/TZ=UTC/TZ=Europe\/Berlin/' .env
