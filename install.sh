@@ -43,8 +43,7 @@ while [ $SSHUP != 0 ]; do
 	SSHUP=$?
 done
 
-ssh -l root -i ~/.ssh/id_rsa "$IPv4" "apt -y update && \
-	apt -y install git && \
+ssh -l root -i ~/.ssh/id_rsa "$IPv4" "apt -y update && apt -y upgrade && apt install git && \
 	cd /root && \
 	git clone $GITREPO && \
 	cd /root/hcloud-jitsi-builder/ && \

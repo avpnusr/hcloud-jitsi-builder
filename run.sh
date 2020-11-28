@@ -4,8 +4,6 @@ IPT=/sbin/iptables
 JITSIHOSTNAME="$1"
 ENCMAIL="$2"
 
-apt update && apt -y upgrade 
-
 cd ~
 
 echo "Docker installation, if needed."
